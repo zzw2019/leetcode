@@ -24,10 +24,11 @@ public class QuicklySort {
      * */
     @Test
     public void test01(){
+        int arr[]={354,57,25,25,32};
         //设置标准数为25
-        int standard=25;
-        splitArray(ArrayData.ARR,standard);
-        ArrayData.print(ArrayData.ARR);
+        int standard=354;
+        splitArray(arr,standard);
+        ArrayData.print(arr);
     }
 
     /**
@@ -129,23 +130,26 @@ public class QuicklySort {
      * */
     @Test
     public void testQuicklySort(){
-        quicklySort(ArrayData.ARR,0,ArrayData.ARR.length-1);
+        quicklySort(ArrayData.ARR,0,ArrayData.ARR.length-1,0);
+//        qui(ArrayData.ARR,0,ArrayData.ARR.length-1);
         ArrayData.print(ArrayData.ARR);
     }
 
-    public void quicklySort(int [] arr,int beginIndex,int endIndex){
-        if(beginIndex==endIndex){
+    public void quicklySort(int [] arr,int beginIndex,int endIndex,int times){
+        if(beginIndex>=endIndex){
             return;
         }
         int leftIndex=beginIndex;
         int rightIndex=endIndex;
-        int standardValue=arr[leftIndex];
+        int standardValue=arr[beginIndex];
         while (leftIndex<rightIndex){
-            while (arr[leftIndex]<standardValue){
-                leftIndex++;
-            }
-            while (arr[rightIndex]>=standardValue){
+            //找到比基准小的，遇到比基准大的就跳过
+            while (arr[rightIndex]>=standardValue && leftIndex<rightIndex){
                 rightIndex--;
+            }
+            //找到比基准大的，遇到比基准小的就跳过
+            while (arr[leftIndex]<=standardValue && leftIndex<rightIndex){
+                leftIndex++;
             }
             if(leftIndex<rightIndex){
                 ArrayData.swap(arr,leftIndex,rightIndex);
@@ -154,8 +158,8 @@ public class QuicklySort {
         //我这里漏掉了
         ArrayData.swap(arr,leftIndex,beginIndex);
         //这里之后 就以standard为标准，左边都比其小，右边都比其大
-        quicklySort(arr,beginIndex,leftIndex-1);
-        quicklySort(arr,leftIndex,endIndex);
+        quicklySort(arr,beginIndex,leftIndex-1,times);
+        quicklySort(arr,leftIndex+1,endIndex,times);
     }
 
 }
