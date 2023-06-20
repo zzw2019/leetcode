@@ -51,6 +51,12 @@ public class BinaryTreeUtils {
         BinaryTree binaryTree = generateTree(ArrayData.ARR);
         System.out.println("==========前序打印====================");
         qianxuPrint(binaryTree);
+        System.out.println();
+        System.out.println("==========中序打印====================");
+        zhongxuPrint(binaryTree);
+        System.out.println();
+        System.out.println("==========后序打印====================");
+        houxuPrint(binaryTree);
     }
 
     /**
@@ -73,15 +79,17 @@ public class BinaryTreeUtils {
      * 所谓的中序是 第二个输出根节点(左根右)
      * */
     public static void zhongxuPrint(BinaryTree binaryTree){
+        if(binaryTree==null){
+            return;
+        }
         //只要有左孩子存在，就到下一层
         if(binaryTree.getLeftSon()!=null){
             zhongxuPrint(binaryTree.getLeftSon());
         }
+        //打印当前节点的value
         System.out.print(binaryTree.getValue()+",");
-//        //打印左节点
-//        qianxuPrint(binaryTree.getLeftSon());
-//        //打印右节点
-//        qianxuPrint(binaryTree.getRightSon());
+        //打印右节点
+        zhongxuPrint(binaryTree.getRightSon());
     }
 
     /**
@@ -92,10 +100,12 @@ public class BinaryTreeUtils {
         if(binaryTree==null){
             return;
         }
-        System.out.print(binaryTree.getValue()+",");
-        //打印左节点
-        qianxuPrint(binaryTree.getLeftSon());
+        //只要有左孩子存在，就到下一层
+        if(binaryTree.getLeftSon()!=null){
+            houxuPrint(binaryTree.getLeftSon());
+        }
         //打印右节点
-        qianxuPrint(binaryTree.getRightSon());
+        houxuPrint(binaryTree.getRightSon());
+        System.out.print(binaryTree.getValue()+",");
     }
 }
