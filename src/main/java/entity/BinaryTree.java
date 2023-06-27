@@ -1,5 +1,6 @@
 package entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Data;
  * 二叉树实体类
  */
 @Data
+@Builder
 public class BinaryTree {
     private Integer value;
     private BinaryTree leftSon;

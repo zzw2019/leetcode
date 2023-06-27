@@ -26,8 +26,7 @@ public class BinaryTreeUtils {
         Map<Integer,BinaryTree> positionNodeMap=new HashMap<>();
         //根据数组生成所有的节点
         for(int i=0;i<arr.length;i++){
-            BinaryTree binaryTree=new BinaryTree();
-            binaryTree.setValue(arr[i]);
+            BinaryTree binaryTree= BinaryTree.builder().value(arr[i]).build();
             positionNodeMap.put(i,binaryTree);
         }
         //开始填充孩子
@@ -46,6 +45,9 @@ public class BinaryTreeUtils {
         return positionNodeMap.get(0);
     }
 
+    /**
+     * 使用递归的方式打印前序、中序、后序节点
+     * */
     @Test
     public void testGenerateTree(){
         BinaryTree binaryTree = generateTree(ArrayData.ARR);
@@ -107,5 +109,13 @@ public class BinaryTreeUtils {
         //打印右节点
         houxuPrint(binaryTree.getRightSon());
         System.out.print(binaryTree.getValue()+",");
+    }
+
+    /**
+     * 非递归方式打印前序节点
+     *
+     * */
+    public static void qianxuPirnt02(){
+
     }
 }
